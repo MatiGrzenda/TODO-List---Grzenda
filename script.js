@@ -6,17 +6,36 @@ function nuevaEntrada()
     let input = document.getElementById("input");
     const fechaCreacion = new Date();
     lista.push({entrada: input.value, fechaCreacion: fechaCreacion, activo: true, fechaTachado: fechaCreacion});
+    llenarTabla();
+}
 
-    let div = document.getElementById("lista");
-    let html;
-    for(let i; i < lista.length; i++)
+function llenarTabla()
+{
+    let tabla = document.getElementById("lista");
+    tabla.innerHTML = "";
+    for(let i = 0; i < lista.length; i++)
     {
-        elemento = lista[i];
-        html += 
-        `<input type="checkbox" id="checkbox${i}">
-        <p>${elemento.entrada}</p>
-        <p>${elemento.fechaCreacion.toLocaleTimeString()}, ${elemento.fechaCreacion.toLocaleDateString()}</p>`;
-        if(!elemento.activo) html += `<p>${elemento.fechaTachado.toLocaleTimeString()}, ${elemento.fechaTachado.toLocaleDateString()}</p>`;
+        let elemento = lista[i];
+        let finalizacion = "";
+        if(!elemento.activo) finalizacion = `${elemento.fechaTachado.toLocaleTimeString()}, ${elemento.fechaTachado.toLocaleDateString()}`;
+        tabla.innerHTML += 
+        `<tr>
+            <th scope="row"><input type="checkbox" id="checkbox${i}></th>
+            <td>${elemento.entrada}</td>
+            <td>${elemento.fechaCreacion.toLocaleTimeString()}, ${elemento.fechaCreacion.toLocaleDateString()}</td>
+            <td>${finalizacion}</td>
+        </tr>`;
     }
-    div.innerHTML = html;
+    tabla.innerHTML +=
+    `   <tr>
+            <th scope="row"></th>
+            <td>
+                <form onsubmit="nuevaEntrada()">
+                    <input type="text" id="input" required>
+                    <input type="submit">
+                </form>
+            </td>
+            <td colspan="2"></td>
+        </tr>`;
+    console.log(tabla.innerHTML);
 }
