@@ -1,3 +1,7 @@
+h1{
+    padding: 3rem;
+    text-align: center;
+}
 input[type=submit]{
     visibility: hidden;
 }
@@ -11,4 +15,34 @@ section{
 .tableContainer{
     height: 80%;
     width: 80%;
+}
+input[type=text]{
+    width: 95%;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgb(199, 199, 199);
+}
+input[type=text]:focus{
+    border-bottom-color: rgb(57, 204, 101);
+}
+input[type=checkbox]{
+    border-color: rgb(57, 204, 101);
+}
+input[type=checkbox]:focus{
+    border-color: rgb(57, 204, 101);
+    box-shadow: 0 0 0 .25rem rgba(57, 204, 101, 0.25);
+}
+form{
+    height: 1.5rem;
+}
+.tachado{
+    color: rgb(126, 126, 126) !important;
+    text-decoration: line-through;
+}
+.checkbox-tachado{
+    border-color: rgb(153, 153, 153) !important;
+    background-color: rgb(153, 153, 153) !important;
+}
+.checkbox-tachado:focus{
+    box-shadow: 0 0 0 .25rem rgba(153, 153, 153, 0.25) !important;
 }

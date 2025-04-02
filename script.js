@@ -9,6 +9,20 @@ function nuevaEntrada()
     llenarTabla();
 }
 
+function tachar(index)
+{
+    let checkbox = document.getElementById(`checkbox${index}`);
+
+    if(checkbox.checked)
+    {
+        lista[index].activo = false;
+        lista[index].fechaTachado = new Date();
+    }
+    else lista[index].activo = true;
+
+    llenarTabla();
+}
+
 function llenarTabla()
 {
     let tabla = document.getElementById("lista");
@@ -16,15 +30,25 @@ function llenarTabla()
     for(let i = 0; i < lista.length; i++)
     {
         let elemento = lista[i];
-        let finalizacion = "";
-        if(!elemento.activo) finalizacion = `${elemento.fechaTachado.toLocaleTimeString()}, ${elemento.fechaTachado.toLocaleDateString()}`;
+        let finalizacion = "", checkbox = "", clase = "";
+        if(!elemento.activo)
+        {
+            checkbox = "checked";
+            clase = "tachado";
+            finalizacion = `${elemento.fechaTachado.toLocaleTimeString()}, ${elemento.fechaTachado.toLocaleDateString()}`;
+        }
         tabla.innerHTML += 
         `<tr>
-            <th scope="row"><input type="checkbox" id="checkbox${i}></th>
-            <td>${elemento.entrada}</td>
+            <th scope="row"><input type="checkbox" id="checkbox${i}" onchange="tachar(${i})" class="form-check-input checkbox-${clase}" ${checkbox}></th>
+            <td class="${clase}" id="tarea${i}"></td>
             <td>${elemento.fechaCreacion.toLocaleTimeString()}, ${elemento.fechaCreacion.toLocaleDateString()}</td>
             <td>${finalizacion}</td>
+            <td></td>
         </tr>`;
+
+        let tarea = document.getElementById(`tarea${i}`);
+        tarea.innerText = elemento.entrada; //Para que no se pueda poner HTML en el input.
+
     }
     tabla.innerHTML +=
     `   <tr>
@@ -35,7 +59,6 @@ function llenarTabla()
                     <input type="submit">
                 </form>
             </td>
-            <td colspan="2"></td>
+            <td colspan="3"></td>
         </tr>`;
-    console.log(tabla.innerHTML);
 }
