@@ -5,7 +5,7 @@ function nuevaEntrada()
     event.preventDefault();
     let input = document.getElementById("input");
     const fechaCreacion = new Date();
-    lista.push({entrada: input.value, fechaCreacion: fechaCreacion, activo: true, fechaTachado: fechaCreacion});
+    lista.push({entrada: input.value, fechaCreacion: fechaCreacion, activo: true, fechaTachado: fechaCreacion}); //Pongo fechaCreacion en fechaTachado para que reconozca que es una fecha.
     llenarTabla();
 }
 
@@ -55,10 +55,36 @@ function llenarTabla()
             <th scope="row"></th>
             <td>
                 <form onsubmit="nuevaEntrada()">
-                    <input type="text" id="input" required>
+                    <input type="text" id="input" autocomplete="off" required>
                     <input type="submit">
                 </form>
             </td>
             <td colspan="3"></td>
         </tr>`;
 }
+
+function verificarMasRapida()
+{
+    let tareaMin, indexMin, tiempoMin = Number.MAX_VALUE, hayTerminadas = false;
+
+    for(let i = 0; i < lista.length; i++)
+    {
+        let tiempo = Math.abs(lista[i].fechaCreacion - lista[i].fechaTachado);
+
+        if (tiempo < tiempoMin && !lista[i].activo)
+        {
+            tiempoMin = tiempo;
+            indexMin = i;
+            hayTerminadas = true;
+        }
+    }
+
+    if (hayTerminadas)
+    {
+        tareaMin = lista[indexMin].entrada;
+        alert(`La tarea más rápida en realizarse fue "${tareaMin}", número ${indexMin + 1} en la lista.`);
+    }
+    else alert("Aún no fue terminada ninguna tarea.");
+}
+
+/*buscar react, las primeras 2. tambien prettier eslint y vscode icons*/

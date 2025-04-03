@@ -46,3 +46,19 @@ form{
 .checkbox-tachado:focus{
     box-shadow: 0 0 0 .25rem rgba(153, 153, 153, 0.25) !important;
 }
+button{
+    position: fixed;
+    bottom: 2.5rem;
+    right: 2.5rem;
+    border-color: rgb(57, 204, 101) !important;
+    background-color: rgb(57, 204, 101) !important;
+}
+button:hover{
+    border-color: rgb(37, 177, 79) !important;
+    background-color: rgb(37, 177, 79) !important;
+
+}
+button:active{
+    border-color: rgb(21, 141, 57) !important;
+    background-color: rgb(21, 141, 57) !important;
+}
