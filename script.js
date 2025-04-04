@@ -23,10 +23,18 @@ function tachar(index)
     llenarTabla();
 }
 
+function eliminarEntrada(index)
+{
+    if (confirm("Está seguro que desea eliminar la tarea? No se podrá recuperar.")) lista.splice(index, 1);
+
+    llenarTabla();
+}
+
 function llenarTabla()
 {
     let tabla = document.getElementById("lista");
     tabla.innerHTML = "";
+    localStorage.setItem("lista", JSON.stringify(lista));
     for(let i = 0; i < lista.length; i++)
     {
         let elemento = lista[i];
@@ -43,7 +51,7 @@ function llenarTabla()
             <td class="${clase}" id="tarea${i}"></td>
             <td>${elemento.fechaCreacion.toLocaleTimeString()}, ${elemento.fechaCreacion.toLocaleDateString()}</td>
             <td>${finalizacion}</td>
-            <td></td>
+            <td><button class="botonEliminar" onclick="eliminarEntrada(${i})"><i class="fa-solid fa-trash-can"></i></button></td>
         </tr>`;
 
         let tarea = document.getElementById(`tarea${i}`);
@@ -87,4 +95,12 @@ function verificarMasRapida()
     else alert("Aún no fue terminada ninguna tarea.");
 }
 
-/*buscar react, las primeras 2. tambien prettier eslint y vscode icons*/
+if(localStorage.getItem("lista") != null)
+{
+    lista = JSON.parse(localStorage.getItem("lista"));
+    lista.forEach((element) =>
+    {
+        element.fechaCreacion = new Date(element.fechaCreacion);
+        element.fechaTachado = new Date(element.fechaTachado);
+    })
+}

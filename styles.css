@@ -47,19 +47,26 @@ form{
 .checkbox-tachado:focus{
     box-shadow: 0 0 0 .25rem rgba(153, 153, 153, 0.25) !important;
 }
-button{
+.btn-primary{
     position: fixed;
     bottom: 2rem;
     right: 2rem;
     border-color: rgb(57, 204, 101) !important;
     background-color: rgb(57, 204, 101) !important;
 }
-button:hover{
+.btn-primary:hover{
     border-color: rgb(37, 177, 79) !important;
     background-color: rgb(37, 177, 79) !important;
 
 }
-button:active{
+.btn-primary:active{
     border-color: rgb(21, 141, 57) !important;
     background-color: rgb(21, 141, 57) !important;
+}
+.botonEliminar{
+    background-color: transparent;
+    border: none;
+}
+.botonEliminar:hover{
+    color: red;
 }
