@@ -82,15 +82,6 @@ function llenarTabla()
         </tr>`;
 }
 
-if(localStorage.getItem("lista") != null)
-    {
-        lista = JSON.parse(localStorage.getItem("lista"));
-        lista.forEach((element) =>
-        {
-            element.fechaCreacion = new Date(element.fechaCreacion);
-            element.fechaTachado = new Date(element.fechaTachado);
-        })
-    }
 function verificarMasRapida()
 {
     let tareaMin, indexMin, tiempoMin = Number.MAX_VALUE, hayTerminadas = false;
