@@ -1,5 +1,16 @@
 let lista = [];
 
+if(localStorage.getItem("lista") != null)
+{
+    lista = JSON.parse(localStorage.getItem("lista"));
+    lista.forEach((element) =>
+    {
+        element.fechaCreacion = new Date(element.fechaCreacion);
+        element.fechaTachado = new Date(element.fechaTachado);
+    })
+    llenarTabla();
+}
+
 function nuevaEntrada()
 {
     event.preventDefault();
@@ -71,6 +82,15 @@ function llenarTabla()
         </tr>`;
 }
 
+if(localStorage.getItem("lista") != null)
+    {
+        lista = JSON.parse(localStorage.getItem("lista"));
+        lista.forEach((element) =>
+        {
+            element.fechaCreacion = new Date(element.fechaCreacion);
+            element.fechaTachado = new Date(element.fechaTachado);
+        })
+    }
 function verificarMasRapida()
 {
     let tareaMin, indexMin, tiempoMin = Number.MAX_VALUE, hayTerminadas = false;
@@ -93,14 +113,4 @@ function verificarMasRapida()
         alert(`La tarea más rápida en realizarse fue "${tareaMin}", número ${indexMin + 1} en la lista.`);
     }
     else alert("Aún no fue terminada ninguna tarea.");
-}
-
-if(localStorage.getItem("lista") != null)
-{
-    lista = JSON.parse(localStorage.getItem("lista"));
-    lista.forEach((element) =>
-    {
-        element.fechaCreacion = new Date(element.fechaCreacion);
-        element.fechaTachado = new Date(element.fechaTachado);
-    })
 }
