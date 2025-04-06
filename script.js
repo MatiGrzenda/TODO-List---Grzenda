@@ -54,13 +54,13 @@ function llenarTabla()
         {
             checkbox = "checked";
             clase = "tachado";
-            finalizacion = `${elemento.fechaTachado.toLocaleTimeString()}, ${elemento.fechaTachado.toLocaleDateString()}`;
+            finalizacion = `${elemento.fechaTachado.toLocaleTimeString()}, ${elemento.fechaTachado.toLocaleDateString("en-GB")}`;
         }
         tabla.innerHTML += 
         `<tr>
             <th scope="row"><input type="checkbox" id="checkbox${i}" onchange="tachar(${i})" class="form-check-input checkbox-${clase}" ${checkbox}></th>
             <td class="${clase}" id="tarea${i}"></td>
-            <td>${elemento.fechaCreacion.toLocaleTimeString()}, ${elemento.fechaCreacion.toLocaleDateString()}</td>
+            <td>${elemento.fechaCreacion.toLocaleTimeString()}, ${elemento.fechaCreacion.toLocaleDateString("en-GB")}</td>
             <td>${finalizacion}</td>
             <td><button class="botonEliminar" onclick="eliminarEntrada(${i})"><i class="fa-solid fa-trash-can"></i></button></td>
         </tr>`;
